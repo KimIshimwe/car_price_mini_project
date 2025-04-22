@@ -2,6 +2,7 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 import joblib
+import base64
 from sklearn.preprocessing import OneHotEncoder
 df = pd.read_csv('car_price_prediction.csv', sep = ',')
 
@@ -11,12 +12,6 @@ df = df.rename(columns= {'Prod. year': 'prod_year', 'Engine volume': 'engine_vol
 model = joblib.load(filename = 'my_model.joblib')
 encoder = joblib.load(filename = 'encoder.joblib')
 feature_order = joblib.load('feature_order.joblib')
-
-import streamlit as st
-import numpy as np
-import pandas as pd
-import joblib
-import base64
 
 st.set_page_config(page_title="Prédiction du Prix de Voiture", layout="wide")
 
