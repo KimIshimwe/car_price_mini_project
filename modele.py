@@ -64,6 +64,6 @@ import joblib
 
 feature_order = OH_X_train.columns.to_list() # pour l'ordre des colonnes features
 
-joblib.dump(forest_model, "my_model.joblib")
+joblib.dump(forest_model, "my_model.joblib", compress = 3)
 joblib.dump(OH_encoder, "encoder.joblib")
 joblib.dump(feature_order, "feature_order.joblib")
