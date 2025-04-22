@@ -1,3 +1,5 @@
+scikit-image==0.24.0
+scikit-learn==1.5.2
 altair==5.5.0
 anyio==4.6.2.post1
 apturl==0.5.2
