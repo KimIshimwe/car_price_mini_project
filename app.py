@@ -8,7 +8,6 @@ df = pd.read_csv('car_price_prediction.csv', sep = ',')
 
 df = df.rename(columns= {'Prod. year': 'prod_year', 'Engine volume': 'engine_volume', 'Fuel type': 'fuel_type', 'Airbags': 'Airbags'})
 
-# chargement du modèle et de l'encodeur
 model = joblib.load(filename = 'my_model.joblib')
 encoder = joblib.load(filename = 'encoder.joblib')
 feature_order = joblib.load('feature_order.joblib')
@@ -59,7 +58,7 @@ def get_img_as_base64(file):
 img_path = "breaking_bad.jpeg"
 img_base64 = get_img_as_base64(img_path)
 
-#  avec l'image à droite
+#  image à droite
 st.markdown(f"""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
@@ -194,4 +193,4 @@ if st.button("Prédire le prix"):
     
     prediction = inference(model, encoder, Model , prod_year, Category,fuel_type, engine_volume, Mileage, Cylinders, Airbags)
     st.success(f"Le prix prédit est de {prediction[0]} $")
-    st.write(engine_volume)
+    
