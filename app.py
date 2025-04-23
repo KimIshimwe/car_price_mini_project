@@ -16,7 +16,7 @@ st.set_page_config(page_title="Prédiction du Prix de Voiture", layout="wide")
 
 # En-tête de page stylisé
 st.markdown("""
-    <h1 style='text-align: center; color: #2E86C1;'>Prédiction du prix des voitures (par Kim Ishimwe)</h1>
+    <h1 style='text-align: center; color: #2E86C1;'>Prédiction du prix des voitures</h1>
     <hr>
 """, unsafe_allow_html=True)
 # Chargement de l'image en fond (à placer au début)
