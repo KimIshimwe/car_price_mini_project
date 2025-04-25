@@ -5,9 +5,8 @@ import joblib
 import base64
 from sklearn.preprocessing import OneHotEncoder
 df = pd.read_csv('car_price_prediction.csv', sep = ',')
-
-df = df.rename(columns= {'Prod. year': 'prod_year', 'Engine volume': 'engine_volume', 'Fuel type': 'fuel_type', 'Airbags': 'Airbags'})
 df["Engine volume"] = df["Engine volume"].apply(lambda x: float(str(x)[0]) if pd.notnull(x) and str(x)[0].isdigit() else None)
+df = df.rename(columns= {'Prod. year': 'prod_year', 'Engine volume': 'engine_volume', 'Fuel type': 'fuel_type', 'Airbags': 'Airbags'})
 
 model = joblib.load(filename = 'my_model.joblib')
 encoder = joblib.load(filename = 'encoder.joblib')
