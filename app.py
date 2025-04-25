@@ -7,6 +7,7 @@ from sklearn.preprocessing import OneHotEncoder
 df = pd.read_csv('car_price_prediction.csv', sep = ',')
 
 df = df.rename(columns= {'Prod. year': 'prod_year', 'Engine volume': 'engine_volume', 'Fuel type': 'fuel_type', 'Airbags': 'Airbags'})
+df["Engine volume"] = df["Engine volume"].apply(lambda x: float(str(x)[0]) if pd.notnull(x) and str(x)[0].isdigit() else None)
 
 model = joblib.load(filename = 'my_model.joblib')
 encoder = joblib.load(filename = 'encoder.joblib')
@@ -115,7 +116,7 @@ def inference(model, encoder,Manufacturer, Model , prod_year, Category,fuel_type
      # var. catégorielles
     var_cat = pd.DataFrame([[Manufacturer,Model, Category, fuel_type, engine_volume]], columns=['Manufacturer', 'Model', 'Category', 'fuel_type', 'engine_volume'])
     var_cat_encod = encoder.transform(var_cat)
-    col_names = encoder.get_feature_names_out(['Manufacturer','Model', 'Category', 'fuel_type', 'engine_volume'])
+    col_names = encoder.get_feature_names_out(['Manufacturer','Model', 'Category', 'fuel_typeManufacturer', 'engine_volume'])
     var_cat_encod_df = pd.DataFrame(var_cat_encod, columns=col_names)
 
     # var. numériques
