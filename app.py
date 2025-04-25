@@ -152,7 +152,7 @@ prod_year = st.selectbox(
     "L'année de production", sorted(df["prod_year"].unique(), reverse=True)
 )
 Category = st.selectbox(
-    "Catégorie", df["Category"].unique()
+    "La catégorie", df["Category"].unique()
 )
 
 fuel_type = st.selectbox(
@@ -161,7 +161,7 @@ fuel_type = st.selectbox(
 engine_volume = st.selectbox(
     "La capacité du réservoir", sorted(df["engine_volume"].unique(), reverse=True)
 )
-Mileage = st.number_input("Kilométrage", min_value = 0, max_value = 200000, value = 0)
+Mileage = st.number_input("Le kilométrage", min_value = 0, max_value = 200000, value = 0)
 
 Cylinders = st.selectbox(
     "Le nombre de cylindres", sorted(df["Cylinders"].unique(), reverse=True)
