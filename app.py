@@ -111,11 +111,11 @@ st.markdown("""
             <p style='text-align: center; font-size:18px;'>Remplissez les champs ci-dessous pour obtenir une estimation du prix</p>
 
             """, unsafe_allow_html = True)
-def inference(model, encoder, Model , prod_year, Category,fuel_type, engine_volume, Mileage, Cylinders, Airbags):
+def inference(model, encoder,Manufacturer, Model , prod_year, Category,fuel_type, engine_volume, Mileage, Cylinders, Airbags):
      # var. catégorielles
-    var_cat = pd.DataFrame([[Model, Category, fuel_type, engine_volume]], columns=['Model', 'Category', 'fuel_type', 'engine_volume'])
+    var_cat = pd.DataFrame([[Manufacturer,Model, Category, fuel_type, engine_volume]], columns=['Model', 'Category', 'fuel_type', 'engine_volume'])
     var_cat_encod = encoder.transform(var_cat)
-    col_names = encoder.get_feature_names_out(['Model', 'Category', 'fuel_type', 'engine_volume'])
+    col_names = encoder.get_feature_names_out(['Manufacturer','Model', 'Category', 'fuel_type', 'engine_volume'])
     var_cat_encod_df = pd.DataFrame(var_cat_encod, columns=col_names)
 
     # var. numériques
@@ -140,9 +140,13 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+Manufacturer = st.selectbox(
+    "Le constructeur", df["Manufacturer"].unique())
+
+filtered_models = df[df["Manufacturer"] == Manufacturer]["Model"].unique()
 
 Model = st.selectbox(
-    "Le modèle", df["Model"].unique()
+    "Le modèle", filtered_models
 )
 prod_year = st.selectbox(
     "L'année de production", sorted(df["prod_year"].unique(), reverse=True)
@@ -191,6 +195,6 @@ st.markdown(
 )
 if st.button("Prédire le prix"):
     
-    prediction = inference(model, encoder, Model , prod_year, Category,fuel_type, engine_volume, Mileage, Cylinders, Airbags)
+    prediction = inference(model, encoder, Manufacturer,Model , prod_year, Category,fuel_type, engine_volume, Mileage, Cylinders, Airbags)
     st.success(f"Le prix prédit est de {prediction[0]} $")
     
