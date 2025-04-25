@@ -17,7 +17,7 @@ print(y)
 
 # pour l'erreur "The feature names should match those that were passed during fit"
 df = df.rename(columns= {'Prod. year': 'prod_year', 'Engine volume': 'engine_volume', 'Fuel type': 'fuel_type', 'Airbags': 'Airbags'})
-features = ['Model', 'prod_year', 'Category', 'fuel_type', 'engine_volume','Mileage', 'Cylinders', 'Airbags' ]
+features = ['Manufacturer','Model', 'prod_year', 'Category', 'fuel_type', 'engine_volume','Mileage', 'Cylinders', 'Airbags' ]
 print(df.dtypes)
 X = df[features]
 print(X.head())
