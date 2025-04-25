@@ -113,7 +113,7 @@ st.markdown("""
             """, unsafe_allow_html = True)
 def inference(model, encoder,Manufacturer, Model , prod_year, Category,fuel_type, engine_volume, Mileage, Cylinders, Airbags):
      # var. catégorielles
-    var_cat = pd.DataFrame([[Manufacturer,Model, Category, fuel_type, engine_volume]], columns=['Model', 'Category', 'fuel_type', 'engine_volume'])
+    var_cat = pd.DataFrame([[Manufacturer,Model, Category, fuel_type, engine_volume]], columns=['Manufacturer', 'Model', 'Category', 'fuel_type', 'engine_volume'])
     var_cat_encod = encoder.transform(var_cat)
     col_names = encoder.get_feature_names_out(['Manufacturer','Model', 'Category', 'fuel_type', 'engine_volume'])
     var_cat_encod_df = pd.DataFrame(var_cat_encod, columns=col_names)
