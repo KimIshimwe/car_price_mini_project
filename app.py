@@ -113,14 +113,14 @@ st.markdown("""
             """, unsafe_allow_html = True)
 def inference(model, encoder,Manufacturer, Model , prod_year, Category,fuel_type, engine_volume, Mileage, Cylinders, Airbags):
      # var. catégorielles
-    var_cat = pd.DataFrame([[Manufacturer,Model, Category, fuel_type, engine_volume]], columns=['Manufacturer', 'Model', 'Category', 'fuel_type', 'engine_volume'])
+    var_cat = pd.DataFrame([[Manufacturer,Model, Category, fuel_type]], columns=['Manufacturer', 'Model', 'Category', 'fuel_type'])
     var_cat_encod = encoder.transform(var_cat)
-    col_names = encoder.get_feature_names_out(['Manufacturer','Model', 'Category', 'fuel_typeManufacturer', 'engine_volume'])
+    col_names = encoder.get_feature_names_out(['Manufacturer','Model', 'Category', 'fuel_type'])
     var_cat_encod_df = pd.DataFrame(var_cat_encod, columns=col_names)
 
     # var. numériques
-    var_num = pd.DataFrame([[prod_year, Mileage, Cylinders, Airbags]],
-                           columns=['prod_year', 'Mileage', 'Cylinders', 'Airbags'])
+    var_num = pd.DataFrame([[prod_year,engine_volume, Mileage, Cylinders, Airbags]],
+                           columns=['prod_year', 'engine_volume', 'Mileage', 'Cylinders', 'Airbags'])
 
     var = pd.concat([var_cat_encod_df, var_num], axis = 1)
     var = var[feature_order]
