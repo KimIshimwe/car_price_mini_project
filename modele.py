@@ -5,10 +5,12 @@ from sklearn.metrics import mean_absolute_error
 sklearn.set_config(transform_output="pandas")
 
 
+
 df = pd.read_csv('car_price_prediction.csv', sep = ',')
 print(df.head())
 print(df.columns)
-df["Mileage"] = df["Mileage"].str.extract('(\d+)').astype(float) #  colonne Mileage en floater
+df["Mileage"] = df["Mileage"].str.extract('(\d+)').astype(float) 
+df["Engine volume"] = df["Engine volume"].apply(lambda x: float(str(x)[0]) if pd.notnull(x) and str(x)[0].isdigit() else None)
 
 # Construction du modèle
 df = df.dropna(axis = 0)
